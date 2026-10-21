@@ -1,192 +1,130 @@
-# Go Multi-Page Web Server
+# Real-Time Task Kanban Board
 
-A beginner-friendly web server built using Go's standard `net/http` package.
-
-This project demonstrates how to create a simple HTTP server, register multiple routes, and serve HTML pages directly from Go without using any external frameworks.
-
----
+A lightweight Kanban-style task management application built with **Go, SQLite, Templ, and HTMX**. This project focuses on learning backend web development through Go's standard HTTP library, server-rendered interfaces, database integration, and modular application architecture.
 
 ## Features
 
-- Built using only Go's standard library
-- Multiple web pages
-- HTTP routing
-- HTML served directly from Go
-- Navigation between pages
-- Beginner-friendly code structure
+- **Kanban Workflow:** A task board organized around three stages — To Do, In Progress, and Done.
+- **User Registration:** A signup flow with password hashing using bcrypt.
+- **Database Integration:** SQLite integration for persistent data storage and user management.
+- **Server-Side Rendering:** HTML interfaces rendered using Templ components.
+- **HTMX Integration:** A foundation for interactive web experiences without requiring a separate frontend framework.
+- **Modular Architecture:** Separated server initialization, HTTP handlers, database logic, and UI components.
+- **Static Asset Serving:** Dedicated static files for CSS and other frontend assets.
 
----
+> **Development status:** The project is under active development. User registration and initial database integration are implemented. Login, cookie-based session management, and complete task CRUD and drag-and-drop functionality are planned next.
 
-## Pages
+## Tech Stack
 
-| Route | Description |
-|--------|-------------|
-| `/` | Home page |
-| `/about` | About page |
-| `/contact` | Contact page |
-
----
+| Technology | Purpose |
+|---|---|
+| [Go](https://go.dev/) | Backend development and HTTP server |
+| `net/http` | HTTP routing and request handling |
+| [SQLite](https://www.sqlite.org/) | Lightweight relational database |
+| [Templ](https://templ.guide/) | Type-safe, component-based HTML rendering |
+| [HTMX](https://htmx.org/) | Dynamic interactions using HTML attributes |
+| HTML5 & CSS3 | Structure and styling |
+| [bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt) | Password hashing |
 
 ## Project Structure
 
+```text
+Daily-Tasks-Go-Server/
+├── Main.go              # Application entry point
+├── server.go            # Server initialization and HTTP handlers
+├── components/          # Templ UI components and pages
+├── static/
+│   └── css/
+│       └── style.css    # Application styles
+├── go.mod               # Go module and dependencies
+├── go.sum               # Dependency checksums
+└── kanban.db            # Local SQLite database (generated at runtime)
 ```
-go-multi-page-web-server
-│
-├── main.go
-├── go.mod
-├── README.md
-├── LICENSE
-└── .gitignore
-```
 
----
-
-## Concepts Practiced
-
-This project helped me learn:
-
-- Packages
-- Functions
-- HTTP Servers
-- HTTP Handlers
-- ResponseWriter
-- Request
-- Routing
-- HTML in Go
-- fmt package
-- net/http package
-
----
-
-## Technologies Used
-
-- Go
-- net/http
-- HTML
-
-No external packages or frameworks were used.
-
----
+*The structure above reflects the current project layout; additional packages and files may be introduced as development progresses.*
 
 ## Getting Started
 
-### Clone the repository
+### Prerequisites
+
+- [Go](https://go.dev/dl/) installed
+- [Git](https://git-scm.com/) installed
+- [Templ CLI](https://templ.guide/) for generating Go code from `.templ` files when required
+
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/go-multi-page-web-server.git
+git clone https://github.com/stanlyvarghese/Daily-Tasks-Go-Server.git
+cd Daily-Tasks-Go-Server
 ```
 
-### Navigate into the project
+### 2. Download dependencies
 
 ```bash
-cd go-multi-page-web-server
+go mod download
 ```
 
-### Initialize Go modules (if needed)
+### 3. Generate Templ code
+
+If you have modified `.templ` files or the generated Go files are missing, install the Templ CLI and generate the required code:
 
 ```bash
-go mod tidy
+go install github.com/a-h/templ/cmd/templ@latest
+templ generate
 ```
 
-### Run the application
+### 4. Run the application
 
 ```bash
-go run main.go
+go run .
 ```
 
-The server starts on:
+Open the local address configured by the application in your browser. Check the server's startup output for the port and URL.
 
-```
-http://localhost:8080
-```
+## Application Architecture
 
----
+The application uses a straightforward server-rendered architecture:
 
-## Screens
+1. **HTTP server:** Go's `net/http` handles incoming requests and routes them to the appropriate handlers.
+2. **Page rendering:** Templ components generate HTML for the application interface.
+3. **Database layer:** SQLite stores application data, with database initialization handled by the server.
+4. **Frontend interactions:** HTMX provides a path toward updating interface elements without full-page reloads.
+5. **Static assets:** CSS files are served separately to keep presentation and server logic organized.
 
-### Home
+## Development Roadmap
 
-- Navigation bar
-- Task list
-- Links to About and Contact pages
-
-### About
-
-Simple About page with navigation buttons.
-
-### Contact
-
-Simple Contact page displaying contact information.
-
----
+- [x] Initialize the Go HTTP server.
+- [x] Set up Templ components and application pages.
+- [x] Configure static CSS serving.
+- [x] Integrate SQLite and database initialization.
+- [x] Implement user registration and password hashing.
+- [ ] Implement login and authentication.
+- [ ] Add secure, cookie-based session management.
+- [ ] Implement task creation, editing, deletion, and database persistence.
+- [ ] Support moving tasks between Kanban stages.
+- [ ] Add drag-and-drop task interactions.
+- [ ] Improve input validation, error handling, and automated testing.
 
 ## Learning Objectives
 
-The goal of this project was to understand:
+This project serves as a practical exploration of:
 
-- How Go handles HTTP requests
-- Registering routes using `http.HandleFunc`
-- Writing responses using `fmt.Fprintln`
-- Passing `http.ResponseWriter`
-- Receiving requests with `*http.Request`
-- Serving HTML directly from Go code
-- Running a local web server
-
----
+- Building web servers using Go's standard library.
+- Structuring a maintainable Go application.
+- Rendering reusable server-side UI components.
+- Connecting Go applications to a relational database.
+- Handling user registration and password security.
+- Implementing session-based authentication.
+- Building interactive web interfaces with HTMX.
 
 ## Future Improvements
 
-- Separate HTML into templates
-- Use Go HTML templates
-- Add CSS files
-- Serve static assets
-- Add forms
-- Handle POST requests
-- Use Templ
-- Add HTMX
-- Organize handlers into packages
-- Add logging
-- Improve UI
+Planned improvements include complete authentication, authorization, persistent task management, responsive layouts, and automated tests for HTTP handlers and database operations.
+
+
 
 ---
 
-## Sample Output
+**Author:** [Stanly Varghese](https://github.com/stanlyvarghese)
 
-```
-Home
---------------------------------
-Learn Go + Templ + HTMX
-
-About
-
-Contact
-```
-
----
-
-## What I Learned
-
-While building this project, I learned:
-
-- Creating a web server in Go
-- Using the `net/http` package
-- Registering multiple routes
-- Returning HTML responses
-- Handling browser requests
-- Building a basic multi-page website without external libraries
-
----
-
-## Author
-
-**Stanly Varghese**
-
-Aspiring Software Development Engineer
-
-Learning Go one project at a time.
-
----
-
-## Acknowledgements
-
-This project was built as part of my Go learning journey to understand backend web development using Go's standard library.
+**Repository:** [Daily-Tasks-Go-Server](https://github.com/stanlyvarghese/Daily-Tasks-Go-Server)
