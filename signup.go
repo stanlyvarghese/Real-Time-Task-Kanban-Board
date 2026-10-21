@@ -7,35 +7,53 @@ import (
 )
 
 func (s *Server) signup(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, `<!DOCTYPE html>
-<html>
-<head>
-    <title>Signup</title>
-</head>
 
-<body>
+    if r.Method == http.MethodGet {
+        fmt.Fprintln(w, `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Sign Up</title>
+        </head>
 
-    <h1>Create Account</h1>
+        <body>
 
-    <form action="/signup" method="POST">
+            <h1>Create Account</h1>
 
-        <label>Username</label>
-        <input type="text" name="username">
+            <form action="/signup" method="POST">
 
-        <label>Email</label>
-        <input type="email" name="email">
+                <label>Username</label>
+                <input type="text" name="username">
 
-        <label>Password</label>
-        <input type="password" name="password">
+                <br><br>
 
-        <button type="submit">Sign Up</button>
+                <label>Email</label>
+                <input type="email" name="email">
 
-    </form>
+                <br><br>
 
-</body>
-</html>`)
+                <label>Password</label>
+                <input type="password" name="password">
+
+                <br><br>
+
+                <button type="submit">Sign Up</button>
+
+            </form>
+
+        </body>
+        </html>
+        `)
+
+        return
+    }
+
     if r.Method != http.MethodPost {
-        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+        http.Error(
+            w,
+            "Method not allowed",
+            http.StatusMethodNotAllowed,
+        )
         return
     }
 
@@ -47,8 +65,13 @@ func (s *Server) signup(w http.ResponseWriter, r *http.Request) {
         []byte(password),
         bcrypt.DefaultCost,
     )
+
     if err != nil {
-        http.Error(w, "Unable to create account", http.StatusInternalServerError)
+        http.Error(
+            w,
+            "Unable to create account",
+            http.StatusInternalServerError,
+        )
         return
     }
 
@@ -57,8 +80,13 @@ func (s *Server) signup(w http.ResponseWriter, r *http.Request) {
         email,
         string(passwordHash),
     )
+
     if err != nil {
-        http.Error(w, "Unable to create account", http.StatusInternalServerError)
+        http.Error(
+            w,
+            "Unable to create account",
+            http.StatusInternalServerError,
+        )
         return
     }
 

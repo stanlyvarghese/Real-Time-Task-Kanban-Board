@@ -2,7 +2,7 @@ package main
 
 import (
     "time"
-    "fmt"
+    // "fmt"
 )
 
 type User struct {
@@ -55,25 +55,25 @@ func (s *Server) GetUserByEmail(email string) (*User, error) {
 
     return &user, nil
 }
-func testUserDatabase(server *Server) {
-    // err := server.CreateUser(
-    //     "Stanly",
-    //     "stanlyvarghese16@gmail.com",
-    //     "Plot no. 33 Gopal Vihar, Barra-6, Kanpur, Uttar Pradesh - 208027",
-    // )
+// func testUserDatabase(server *Server) {
+//     // err := server.CreateUser(
+//     //     "Stanly",
+//     //     "stanlyvarghese16@gmail.com",
+//     //     "Plot no. 33 Gopal Vihar, Barra-6, Kanpur, Uttar Pradesh - 208027",
+//     // )
 
-    // if err != nil {
-    //     fmt.Println("CreateUser error:", err)
-    //     return
-    // }
+//     // if err != nil {
+//     //     fmt.Println("CreateUser error:", err)
+//     //     return
+//     // }
 
-    user, err := server.GetUserByEmail("stanlyvarghese14@gmail.com")
+//     user, err := server.GetUserByEmail("stanlyvarghese14@gmail.com")
 
-    if err != nil {
-        fmt.Println("GetUserByEmail error:", err)
-        return
-    }
-    fmt.Println("User ID:", user.ID)
-    fmt.Println("Username:", user.Username)
-    fmt.Println("Email:", user.Email)
-}
+//     if err != nil {
+//         fmt.Println("GetUserByEmail error:", err)
+//         return
+//     }
+//     fmt.Println("User ID:", user.ID)
+//     fmt.Println("Username:", user.Username)
+//     fmt.Println("Email:", user.Email)
+// }

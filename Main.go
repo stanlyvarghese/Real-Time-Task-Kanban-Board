@@ -15,7 +15,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	testUserDatabase(server)
+	// testUserDatabase(server)
 
 	server.Start()
 }

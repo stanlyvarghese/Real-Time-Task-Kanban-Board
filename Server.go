@@ -53,6 +53,8 @@ func home(w http.ResponseWriter, r *http.Request) {
 			<a href="/" class="nav-link active">Board</a>
 			<a href="/about" class="nav-link">About</a>
 			<a href="/contact" class="nav-link">Contact</a>
+			<a href="/signup" class="nav-link">Sign Up</a>
+			<a href="/login" class="nav-link">Login</a>
 		</nav>
 	</header>
 
